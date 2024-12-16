@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+	</title>
+	<link rel="stylesheet" type="text/css" href="113306011_HW7_CSS.css">
+</head>
+<body>
+
+	<div class="left-panel">
+		<div class="photo-panel">
+			
+		</div>
+		<div class="text-content">
+			<h1 id="name">ANDY</h1>
+			<button id="nameEdit">edit</button>
+			<p>ABOUT ME</p>
+			<p>
+				I am a student in NCCU.<br>
+				I am learning HTML and CSS.
+			</p>
+			<p>CONTACT ME</p>
+			<p><a href="mailto:113306011@g.nccu.edu.tw">113306011@g.nccu.edu.tw</a></p>
+			<p><a href="https://www.nccu.edu.tw"><img src="nccu.png" height="60px" width="60px"></a></p>
+		</div>
+	</div>
+
+	<div class="right-panel">
+		<div class="edu">
+			<h2>Education<hr></h2>
+			
+			<div class="year">
+				2024-now National ChengChi University, Department of MIS	   
+			</div>
+			<div class="year">
+				2021-2024  Senior High School Graduation	   
+			</div>
+			<div class="year">
+				2018-2021 Junior High School Graduation		   
+			</div>
+
+			
+		</div>
+		<div class="hw">
+			<h2>Homework List<hr></h2>
+			<div class="hwli">
+				HW1 <a href="https://github.com/Aaandyyy99/HW1.git">https://github.com/Aaandyyy99/HW1.git</a>
+			</div>
+			<div class="hwli">
+				HW2 <a href="https://github.com/Aaandyyy99/113306011_HW2.git">https://github.com/Aaandyyy99/113306011_HW2.git</a>
+			</div>
+			<div class="hwli">
+				HW3 <a href="https://github.com/Aaandyyy99/113306011_HW3.git">https://github.com/Aaandyyy99/113306011_HW3.git</a>
+			</div>
+		</div>
+		
+		
+		<div class="song" id="song">
+			<h2>Favorite Music<hr></h2>
+			<a href="https://www.youtube.com/watch?v=DYptgVvkVLQ" >
+					<img src="youtube.png" width="40" height="40">晴天	
+				</a>
+
+				<a href="https://www.youtube.com/watch?v=YJfHuATJYsQ" >
+					<img src="youtube.png" width="40" height="40">擱淺	
+				</a>
+
+				<a href="https://www.youtube.com/watch?v=sHD_z90ZKV0" >
+					<img src="youtube.png" width="40" height="40">稻香	
+				</a>
+			
+			  
+
+		</div>
+		<div id="add">
+			
+		</div>
+		<button id="addSong">add</button>
+		<div class="note">
+			Note:I don't know what to type here.	
+		</div>
+	</div>
+	<script type="text/javascript">
+
+		function start() {
+			var btn1 = document.getElementById('nameEdit');
+			btn1.addEventListener("click",editName);
+			var btn2 = document.getElementById("addSong");
+			btn2.addEventListener("click",addSong);
+		}
+		var isEditing1 = true;
+		
+		var newName;
+		var newNameValue;
+		function editName() {
+			
+			
+			if (isEditing1) {
+				document.getElementById("name").innerHTML = "<input type= 'text-area' id='newN'>"
+				document.getElementById("nameEdit").innerHTML = "save";
+			}else{
+				newName = document.getElementById("newN");
+				newNameValue = newName.value;
+				document.getElementById("name").innerHTML = newNameValue;
+				document.getElementById("nameEdit").innerHTML = "edit";
+			}
+			isEditing1 = !isEditing1;
+		}
+		let isEditing2 = true;
+
+		function addSong() {
+    	const newSInput = document.getElementById("newS");
+    	const songNameInput = document.getElementById("songName");  
+
+    	if (isEditing2) {
+      	  
+      	  if (!newSInput || !songNameInput){
+            document.getElementById("add").innerHTML = "<input type='text' id='newS'><br><input type='text' id='songName'>"; 
+            document.getElementById("addSong").innerHTML = "save";
+        	}
+    	} else {
+        
+        	if (newSInput && songNameInput) {
+    		const newSValue = newSInput.value;
+    		const songNameValue = songNameInput.value;
+
+    		const songElement = document.getElementById("song");
+    		const newLink = document.createElement("a");
+
+    		
+    		newLink.href = newSValue; 
+    		newLink.innerHTML = "<img src='youtube.png' width='40' height='40'>"; 
+
+    		songElement.appendChild(newLink); 
+    		const songNameTextNode = document.createTextNode(songNameValue);
+    		songElement.appendChild(songNameTextNode);
+    		document.getElementById("addSong").innerHTML = "add";
+
+    		newSInput.value = "";
+    		songNameInput.value = "";
+    		document.getElementById("add").innerHTML ="";
+			} else {
+    			alert("Input elements not found!");
+			}
+   	 	}
+	   	 isEditing2 = !isEditing2;
+		}	
+
+		window.addEventListener("load",start);
+	</script>
+</body>
+</html>
